@@ -34,31 +34,12 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 		size++;
 	}
 
-
-	public void addDefault(){
-		return
-	}
-
 	/**
 	 * @return size of the list
 	 */
+	@Override
 	public int size() {
 		return size;
-	}
-
-	/**
-	 * Get a new SimpleList instance with all items of this list which match the given filter
-	 * @param filter SimpleFilter instance
-	 * @return new SimpleList instance
-	 */
-	public SimpleList<T> filter(SimpleFilter<T> filter){
-		SimpleList<T> result = new SimpleListImpl();
-		for(Object o : this){
-			if(filter.include((T) o)){
-				result.add((T) o);
-			}
-		}
-		return result;
 	}
 
 	/**
@@ -73,9 +54,9 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 	 * Helper class which implements the Iterator interface
 	 * Has to be non static because otherwise it could not access the head of the list
 	 */
-	private class SimpleIterator implements Iterator {
+	private class SimpleIterator implements Iterator<T> {
 
-		private ListElement current = head;
+		private ListElement<T> current = head;
 
 		/**
 		 * @inheritDoc
@@ -89,8 +70,8 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 		 * @inheritDoc
 		 */
 		@Override
-		public Object next() {
-			Object tmp = current.getItem();
+		public T next() {
+			T tmp = current.getItem();
 			current = current.getNext();
 			return tmp;
 		}
@@ -102,7 +83,7 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 	 */
 	private static class ListElement<T> {
 		private T item;
-		private ListElement next;
+		private ListElement<T> next;
 
 		ListElement(T item) {
 			this.item = item;
@@ -119,7 +100,7 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 		/**
 		 * @return successor of the ListElement - may be NULL
 		 */
-		public ListElement getNext() {
+		public ListElement<T> getNext() {
 			return next;
 		}
 
@@ -127,7 +108,7 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 		 * Sets the successor of the ListElement
 		 * @param next ListElement
 		 */
-		public void setNext(ListElement next) {
+		public void setNext(ListElement<T> next) {
 			this.next = next;
 		}
 	}
