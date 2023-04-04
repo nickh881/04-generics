@@ -48,7 +48,7 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 	 */
 	public SimpleList<T> filter(SimpleFilter<T> filter){
 		SimpleList<T> result = new SimpleListImpl();
-		for(T o : this){
+		for(Object o : this){
 			if(filter.include((T) o)){
 				result.add((T) o);
 			}
