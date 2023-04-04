@@ -5,6 +5,7 @@ public interface SimpleList<T> extends Iterable {
 	 * Add a given object to the back of the list.
 	 */
 	void add(T o);
+	void addDefault();
 
 	/**
 	 * @return current size of the list

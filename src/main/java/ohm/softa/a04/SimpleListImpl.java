@@ -34,6 +34,11 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 		size++;
 	}
 
+
+	public void addDefault(){
+		return
+	}
+
 	/**
 	 * @return size of the list
 	 */
